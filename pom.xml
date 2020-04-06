@@ -4,9 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.awo</groupId>
+    <groupId>com.awo.sample</groupId>
     <artifactId>sample-parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>sample-common</module>
+        <module>sample-rpc</module>
+        <module>sample-config</module>
+        <module>sample-cluster</module>
+        <module>sample-registry</module>
+        <module>sample-container</module>
+        <module>sample-serialization</module>
+    </modules>
 
-    
+
 </project>
