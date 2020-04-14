@@ -1,6 +1,7 @@
 package com.awo.sample;
 
 import com.awo.sample.common.URL;
+import com.awo.sample.model.Hello;
 import com.awo.sample.rpc.Exporter;
 import com.awo.sample.rpc.Invoker;
 import com.awo.sample.rpc.Protocol;
@@ -30,6 +31,13 @@ public class ProtocolTest {
         // 通过代理类生成的对象
         HelloService client = proxyFactory.getProxy(invoker);
 
+        // 出入参数为对象
+        Hello hello = new Hello();
+        hello.setName("awo");
+        hello.setHi(" hi sample rpc");
+        Hello result = client.sayObj(hello);
+        System.out.println("name " + result.getName() + " say " + result.getHi());
+
         client.sayHello("sample rpc so easy");
     }
 
@@ -52,7 +60,12 @@ public class ProtocolTest {
         // 通过代理类生成的对象
         HelloService client = proxyFactory.getProxy(refer);
 
-        client.sayHello("sample rpc so easy");
+        // 传输对象
+        Hello hello = new Hello();
+        hello.setName("awo");
+        hello.setHi("sample rpc");
+        Hello result = client.sayObj(hello);
+        System.out.printf("name:" + result.getName() + " say:" + result.getHi());
 
         // 资源释放
         refer.destroy();

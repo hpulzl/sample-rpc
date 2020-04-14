@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 /**
  * @author: Create by awo
  * @date: 2020/4/13
- * @Discription: rmi协议的远程调用
+ * @Discription: rmi协议的远程调用 http://dubbo.apache.org/zh-cn/blog/dubbo-101.html
  **/
 public class RmiProtocol extends AbstractProtocol {
 

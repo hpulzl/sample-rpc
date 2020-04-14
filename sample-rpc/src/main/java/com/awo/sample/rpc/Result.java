@@ -6,4 +6,10 @@ package com.awo.sample.rpc;
  * @Discription: 返回结果
  **/
 public interface Result {
+
+    /**
+     * 获取返回参数
+     * @return
+     */
+    Object recreate();
 }

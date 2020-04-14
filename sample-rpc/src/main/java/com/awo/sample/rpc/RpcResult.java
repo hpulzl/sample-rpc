@@ -12,4 +12,9 @@ public class RpcResult implements Result {
     public RpcResult(Object obj) {
         this.object = obj;
     }
+
+    @Override
+    public Object recreate() {
+        return object;
+    }
 }

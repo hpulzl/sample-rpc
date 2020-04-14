@@ -25,7 +25,7 @@ public class JDKProxyFactory implements ProxyFactory {
                 if (method.getDeclaringClass() == Object.class) {
                     return method.invoke(invoker, args);
                 }
-                return invoker.invoke(new RpcInvocation(method, args));
+                return invoker.invoke(new RpcInvocation(method, args)).recreate();
             }
         };
         return (T) Proxy.newProxyInstance(classLoader, interfaces, handler);

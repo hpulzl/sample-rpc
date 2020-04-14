@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @author: Create by awo
  * @date: 2020/4/5
- * @Discription: URL契约：参考http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-url.html
+ * @Discription: URL契约：参考 http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-url.html
  **/
 @Data
 public class URL {
