@@ -6,4 +6,10 @@ package com.awo.sample.rpc;
  * @Discription: rpc调用时参数的抽象
  **/
 public interface Invocation {
+
+    String getMethodName();
+
+    Class<?>[] getParameterTypes();
+
+    Object[] getArguments();
 }

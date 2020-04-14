@@ -1,5 +1,7 @@
 package com.awo.sample.rpc;
 
+import com.awo.sample.common.URL;
+
 /**
  * @author: Create by awo
  * @date: 2020/4/6
@@ -14,4 +16,14 @@ public interface Invoker<T> {
      * @throws RpcException
      */
     Result invoke(Invocation invocation) throws RpcException;
+
+    void destroy();
+
+    URL getUrl();
+
+    /**
+     * 接口信息
+     * @return
+     */
+    Class<T> getInterface();
 }
