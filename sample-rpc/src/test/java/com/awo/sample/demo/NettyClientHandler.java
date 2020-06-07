@@ -15,6 +15,16 @@ import java.util.concurrent.CompletableFuture;
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.printf("已经与服务端建立连接");
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.printf("已经与服务端取消连接");
+    }
+
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         AllChannelHandler.channelRead(() -> {
             CompletableFuture future = FutureMapUtil.remove(((String) msg).split(":")[1]);

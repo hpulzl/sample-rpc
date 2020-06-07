@@ -45,6 +45,8 @@ public class RpcServer {
                     // 设置字符串消息自动进行编码的编码器到管线
                     p.addLast(new StringEncoder());
                     p.addLast(serverHandler);
+
+                    System.out.println("channelPipeline 中的所有channel:" + p.names());
                 }
             });
 

@@ -8,7 +8,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * @author: Create by awo
  * @date: 2020/5/9
- * @Discription: sharable
+ * @Discription: sharable ChannelInboundHandlerAdapter 提供了接口的默认实现
  **/
 @ChannelHandler.Sharable
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
@@ -32,7 +32,11 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
             String reqId = request.split(":")[1];
 
             String resp = NettyServerHandler.this.generatorFrame("this is result", reqId);
-
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             ctx.channel().writeAndFlush(Unpooled.copiedBuffer(resp.getBytes()));
         });
     }
