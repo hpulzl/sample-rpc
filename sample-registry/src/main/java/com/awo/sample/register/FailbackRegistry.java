@@ -9,8 +9,6 @@ import com.awo.sample.common.URL;
  **/
 public abstract class FailbackRegistry implements RegistryService {
 
-//    private static final Map<>
-
     @Override
     public void register(URL url) {
 
@@ -19,9 +17,12 @@ public abstract class FailbackRegistry implements RegistryService {
 
     protected abstract void doRegister(URL url);
 
+    protected abstract void doSubscribe(URL url, NotifyListener listener);
+
 
     @Override
-    public void subscribe(URL url) {
+    public void subscribe(URL url, NotifyListener listener) {
 
+        doSubscribe(url, listener);
     }
 }

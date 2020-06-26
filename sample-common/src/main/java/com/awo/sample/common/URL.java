@@ -30,6 +30,8 @@ public class URL {
      */
     private String uri;
 
+    private String zkAddress;
+
     public URL(){
 
     }

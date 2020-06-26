@@ -14,5 +14,7 @@ public class ExtensionLoaderTest {
     public void getExtensionLoader() {
         SpiService my = ExtensionLoader.getExtensionLoader(SpiService.class).getExtension("my");
         my.saySpi();
+        SpiService he = ExtensionLoader.getExtensionLoader(SpiService.class).getExtension("he");
+        he.saySpi();
     }
 }

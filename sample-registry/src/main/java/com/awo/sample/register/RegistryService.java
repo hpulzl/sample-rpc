@@ -11,13 +11,21 @@ public interface RegistryService {
 
     /**
      * 服务注册
+     *
      * @param url
      */
     void register(URL url);
 
     /**
      * 订阅服务
+     *
      * @param url
      */
-    void subscribe(URL url);
+    void subscribe(URL url, NotifyListener listener);
+
+    /**
+     * 取消注册
+     * @param url
+     */
+    void unRegister(URL url);
 }

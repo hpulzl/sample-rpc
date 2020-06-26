@@ -1,7 +1,6 @@
 package com.awo.sample.common.spi;
 
 import com.awo.sample.common.util.Holder;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.util.regex.Pattern;
  * @see: http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-spi.html
  * @see: http://dubbo.apache.org/zh-cn/blog/introduction-to-dubbo-spi-2.html
  **/
-@Slf4j
 public class ExtensionLoader<T> {
 
     /**
@@ -110,7 +108,7 @@ public class ExtensionLoader<T> {
             holder = cachedInstances.get(name);
         }
         Object instance = holder.get();
-        // 如果没有创建实例，则创建(double check) TODO 思考-->为什么要这么写呢？(cacheInstances是成员变量，在堆中存在)
+        // 如果没有创建实例，则创建(double check)
         if (instance == null) {
             synchronized (holder) {
                 instance = holder.get();
@@ -130,6 +128,7 @@ public class ExtensionLoader<T> {
      * @return
      */
     private T createExtension(String name) {
+        // 实例化对象
         Class<?> clazz = getExtensionClasses().get(name);
         if (clazz == null) {
             throw new NullPointerException("extension type " + name + " 不存在");
@@ -141,7 +140,7 @@ public class ExtensionLoader<T> {
                 EXTENSION_INSTANCES.putIfAbsent(clazz, clazz.newInstance());
                 instance = (T) EXTENSION_INSTANCES.get(clazz);
             }
-            // 对扩展类进行依赖注入（支持IOC的做法）
+            // 对扩展类进行依赖注入(注入set等操作)（支持IOC的做法）
             injectExtension(instance);
             // 如果有wrapper，添加wrapper （支持AOP）
             Set<Class<?>> wrapperClasses = wrapperCaches;
@@ -166,6 +165,9 @@ public class ExtensionLoader<T> {
      * @return
      */
     private T injectExtension(T instance) {
+        if (objectFactory == null) {
+            return instance;
+        }
         for (Method method : instance.getClass().getMethods()) {
             if (method.getName().startsWith("set")
                     && method.getParameterTypes().length == 1
@@ -174,6 +176,7 @@ public class ExtensionLoader<T> {
                 //  截取set的参数
                 String property = method.getName().length() > 3 ?
                         method.getName().substring(3, 4).toLowerCase() + method.getName().substring(4) : "";
+                // TODO 没有实现
                 Object obj = objectFactory.getExtension(pt, property);
                 if (obj != null) {
                     try {
