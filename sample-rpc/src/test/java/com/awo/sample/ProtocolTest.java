@@ -10,6 +10,10 @@ import com.awo.sample.rpc.proxy.JDKProxyFactory;
 import com.awo.sample.rpc.remote.rmi.RmiProtocol;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * @author: Create by awo
  * @date: 2020/4/12
@@ -70,6 +74,23 @@ public class ProtocolTest {
         // 资源释放
         refer.destroy();
         export.unexport();
+    }
+
+    @Test
+    public void mapTest() {
+        Map<String,String> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("xa","a");
+        linkedHashMap.put("fdb","b");
+        linkedHashMap.put("cgfd","c");
+
+        System.out.println(linkedHashMap);
+
+        Map<String,String> hashMap = new HashMap<>();
+        hashMap.put("gfda","a");
+        hashMap.put("gfdgfd","b");
+        hashMap.put("cgfdg","c");
+
+        System.out.println(hashMap);
     }
 
 }
